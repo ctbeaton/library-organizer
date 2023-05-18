@@ -15,6 +15,9 @@ async function test() {
         let res2 = await instance.post('/library/'+title);
         console.log(res2.data);
 
+        let res3 = await instance.delete('/library/'+title);
+        console.log(res3.data);
+
     }
     catch(err) {
         console.log(err);
