@@ -11,12 +11,15 @@ const instance = axios.create({
 async function test() {
     try {
 
-        let title = 'Mob Psycho 100 II';
-        let res2 = await instance.post('/library/'+title);
-        console.log(res2.data);
+        let res = await instance.get('/popular');
+        console.log(res.data);
 
-        let res3 = await instance.delete('/library/'+title);
-        console.log(res3.data);
+        // let title = 'Mob Psycho 100 II';
+        // let res2 = await instance.post('/library/'+title);
+        // console.log(res2.data);
+
+        // let res3 = await instance.delete('/library/'+title);
+        // console.log(res3.data);
 
     }
     catch(err) {

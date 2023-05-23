@@ -12,6 +12,7 @@ async function getDataCollection() {
 
 // This is the object that gets added to the movies database (either one that's watched or not)
 export class Library {
+    
 
     static async addShow(title) {
         let dataCollection = await getDataCollection();
@@ -62,6 +63,21 @@ export class Library {
         else {
             return 'Show/movie was not deleted.'
         }
+    }
+
+    static async randomShows() {
+        // Return an array of 50 random shows 
+        let dataCollection = await getDataCollection();
+        let objects = await dataCollection.aggregate([
+            { $sample: { size: 50 } }
+        ]).toArray();
+        return objects;
+    }
+
+    static async getPopular() {
+        let dataCollection = await getDataCollection();
+        let popular = await dataCollection.find().sort({ popularity: 1}).limit(50).toArray();
+        return popular;
     }
 
 }

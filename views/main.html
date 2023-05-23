@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <title>Show Organizer</title>
+        <style>
+            @font-face {
+                font-family: 'MavenPro-Black';
+                src: url('../fonts/MavenPro-Black.ttf') format('truetype');
+                    
+            }
+            @font-face {
+                font-family: 'MavenPro-Bold';
+                src: url('../fonts/MavenPro-Bold.ttf') format('truetype');
+                    
+            }
+            @font-face {
+                font-family: 'MavenPro-ExtraBold';
+                src: url('../fonts/MavenPro-ExtraBold.ttf') format('truetype');
+                    
+            }
+            @font-face {
+                font-family: 'MavenPro-Medium';
+                src: url('../fonts/MavenPro-Medium.ttf') format('truetype');
+                    
+            }
+            @font-face {
+                font-family: 'MavenPro-Regular';
+                src: url('../fonts/MavenPro-Regular.ttf') format('truetype');
+                    
+            }
+            @font-face {
+                font-family: 'MavenPro-SemiBold';
+                src: url('../fonts/MavenPro-SemiBold.ttf') format('truetype');
+                    
+            }
+            * { margin:0; padding:0; }
+            body {
+                background-color: #121212;
+            }
+            #browse-btn{
+                color: white;
+                font-size: 16px;
+                border: none;
+                cursor: pointer; 
+                background-color: #3f3f3f;
+                font-family: 'MavenPro-Bold', sans-serif;
+                height: 50px;
+                width: 200px;
+                text-align: left;
+                padding-left: 50px;
+            }
+            #browse-btn:hover, #browse-btn:focus, #profile-btn:hover, #profile-btn:focus {
+                background-color: #282828;
+            }
+            #profile-btn {
+                color: white;
+                font-size: 16px;
+                border: none;
+                cursor: pointer; 
+                background-color: #3f3f3f;
+                font-family: 'MavenPro-Bold', sans-serif;
+                height: 50px;
+                width: 200px;
+                position: absolute;
+                text-align: right;
+                right: 0px;
+                padding-right: 50px;
+            }
+            .dropdown {
+                position: relative;
+                display: inline-block;
+            }
+            .dropdown-content {
+                display: none;
+                position: absolute;
+                background-color: #282828;
+                width: 100vw;
+                box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+                z-index: 1;
+                font-family: 'MavenPro-Bold', sans-serif;
+                text-align: left;
+            }
+            #genre-btn {
+                background-color: #282828;
+                display: block;
+                width:  200px;
+                height: 50px;
+                color: white;
+                border: none;
+                font-family: 'MavenPro-Bold', sans-serif;
+                font-size: 14px;
+                text-align: left;
+                padding-left: 50px;
+            }
+            .browse-categories {
+                background-color: #282828;
+                display: block;
+                width: 200px;
+                height: 50px;
+                color: white;
+                border: none;
+                font-family: 'MavenPro-Regular', sans-serif;
+                font-size: 14px;
+                text-align: left;
+            }
+            .browse-categories:hover {
+                background-color: #121212;
+            }
+            
+            .col-one {
+                display:inline-block;
+                border-right: 1px solid white;
+            }
+            .col-two, .col-three, .col-four, .col-five, .col-six {
+                display: inline-block;
+            }
+            .col-one .browse-categories, 
+            .col-two .browse-categories, 
+            .col-three .browse-categories,
+            .col-four .browse-categories,
+            .col-five .browse-categories,
+            .col-six .browse-categories {
+                padding-left: 50px;
+            }
+            .dropdown-content a {
+                color: white;
+                padding: 12px 16px;
+                text-decoration: none;
+                display: block;
+            }
+
+            .dropdown-content a:hover {background-color: #121212;}
+
+            .show {display:block;}
+
+            header {
+                background-color: #3f3f3f;
+                height: 50px;
+            }
+
+            .tabcontent {
+                display: none;
+                color: white;
+            }
+
+            .shows-list {
+                display: inline-block;
+            }
+        </style>
+
+    </head>
+
+    <body>
+        <header>
+            <div class="dropdown">
+                <button onclick="browsePopup()" class="browse-btn" id="browse-btn">Browse</button>
+                <div id="browse-dropdown" class="dropdown-content">
+                    <div id="col-one" class="col-one">
+                        <button class="browse-categories" id="popular-btn" onclick="showTab('popular-tab')">Popular</button>
+                        <button class="browse-categories" id="new-btn" onclick="showTab('new-tab')">New</button>
+                        <button class="browse-categories" id="alphabetical-btn" onclick="showTab('alphabetical-tab')">Alphabetical</button>
+                    </div>
+                    <div id="col-two" class="col-two">
+                        <button class="genre-btn" id="genre-btn">Genres</button> 
+                        <button class="browse-categories" id="action-btn" onclick="showTab('action-tab')">Action</button>
+                        <button class="browse-categories" id="adventure-btn" onclick="showTab('adventure-tab')">Adventure</button>
+                    </div>
+                    <div id="col-three" class="col-three">
+                        <button class="browse-categories" id="comedy-btn" onclick="showTab('comedy-tab')">Comedy</button>
+                        <button class="browse-categories" id="drama-btn" onclick="showTab('drama-tab')">Drama</button>
+                        <button class="browse-categories" id="fantasy-btn" onclick="showTab('fantasy-tab')">Fantasy</button>
+                    </div>
+                    <div id="col-four" class="col-four">
+                        <button class="browse-categories" id="music-btn" onclick="showTab('music-tab')">Music</button>
+                        <button class="browse-categories" id="romance-btn" onclick="showTab('romance-tab')">Romance</button>
+                        <button class="browse-categories" id="scifi-btn" onclick="showTab('scifi-tab')">Sci-Fi</button>
+                    </div>
+                    <div id="col-five" class="col-five">
+                        <button class="browse-categories" id="seinen-btn" onclick="showTab('seinen-tab')">Seinen</button>
+                        <button class="browse-categories" id="shounen-btn" onclick="showTab('shounen-tab')">Shounen</button>
+                        <button class="browse-categories" id="slice-btn" onclick="showTab('slice-tab')">Slice of Life</button>
+                    </div>
+                    <div id="col-six" class="col-six">
+                        <button class="browse-categories" id="sports-btn" onclick="showTab('sports-tab')">Sports</button>
+                        <button class="browse-categories" id="supernatural-btn" onclick="showTab('supernatural-tab')">Supernatural</button>
+                        <button class="browse-categories" id="thriller-btn" onclick="showTab('thriller-tab')">Thriller</button>
+                    </div>
+                </div>
+            </div>
+            <button id="profile-btn">Profile</button>
+        </header>
+
+        <div id="main-tab">
+            <div class="shows-list" id="random-shows"></div>
+        </div>
+        <div id="popular-tab" class="tabcontent">
+            <div class="shows-list" id="popular-shows"></div>  
+        </div>
+
+        <div id="new-tab" class="tabcontent">
+            <p>This is a test</p>
+        </div>
+    </body>
+
+    <script src="./js/main-tab.js"></script>
+    <script src="./js/popular-tab.js"></script>
+    
+    <script>
+        function browsePopup() {
+            document.getElementById("browse-dropdown").classList.toggle("show");
+        }
+
+        function showTab(tabName) {
+            var main = document.getElementById("main-tab");
+            main.style.display = "none";
+            var i, tabcontent;
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            document.getElementById(tabName).style.display = "block";
+        }
+
+        window.onclick = function(event) {
+            if (!event.target.matches('.browse-btn')) {
+                var dropdowns = document.getElementsByClassName("dropdown-content");
+                var i;
+                for (i=0; i < dropdowns.length; i++) {
+                    var openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains('show')) {
+                        openDropdown.classList.remove('show');
+                    }
+                }
+            }
+        }
+    </script>
+</html>

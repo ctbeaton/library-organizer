@@ -2,7 +2,7 @@
 <html>
 
     <head>
-        <title>Signup Page</title>
+        <title>Show Organizer</title>
         <!-- <link rel="stylesheet" type="text/css" href="style.css"> -->
         <!-- Wasn't linking my CSS file for some reason, so I'm using inline styling for now. -->
         <style>
@@ -109,16 +109,23 @@
     <body>
         
         <div class="container">
-            <div class="col-md-6 main">
-                <input class="textbox" type="text" id="name" placeholder="Full name" required>
-                <input class="textbox" type="email" id="email" placeholder="Email" required>
-                <input class="textbox" type="text" id="username" placeholder="Username" required>
-                <input class="textbox" type="password" id="password" placeholder="Password" required>
-                <input class="login-submit-btn" type="button" id="submit-btn" value="Submit">
-                <a href="/login.html" class="login-submit-btn"><input type="button" id="login-btn" value="Login"></a>
-        
+            <div class="row">
+                <div class="col-md-6 main">
+                    <input class="textbox" type="text" id="name" placeholder="Full name" required>
+                    <input class="textbox" type="email" id="email" placeholder="Email" required>
+                    <input class="textbox" type="text" id="username" placeholder="Username" required>
+                    <input class="textbox" type="password" id="password" placeholder="Password" required>
+                    <input class="login-submit-btn" type="button" id="submit-btn" value="Submit">
+                    <a href="/login.html" id="login-btn" class="login-submit-btn">Login</a>            
+                </div>
             </div>
         </div>
+        
     </body>
+    <script>
+        function loginPage() {
+            window.location.href = '/login.html';
+        }
+    </script>
 
 </html>
